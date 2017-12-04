@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 const App = ({dispatch, handleClick}) => {
     return (
@@ -10,9 +11,10 @@ const App = ({dispatch, handleClick}) => {
           <h1 className="App-title">Welcome to the PoC</h1>
         </header>
         <p className="App-intro">
-          To get started, click <a href="http://localhost:3000/admin" target="">
+          {/* To get started, click <a href="/admin" target="">
             <button>here</button>
-          </a>.
+          </a>. */}
+          <Link to="/admin"><button>Admin</button></Link>
           <button onClick={() => handleClick(dispatch, "me")}>Login</button>
         </p>
       </div>

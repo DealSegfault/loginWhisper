@@ -6,12 +6,12 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import { Route } from 'react-router';
+import { Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import { createStore, compose } from 'redux'
 import web3 from './util/web3'
 // import jwt from './jwt-simple'
-import jwt from './jsonwebtoken'
+// import jwt from './jsonwebtoken'
 
 //Action, reducers
 import user from './reducers/connected'
@@ -43,33 +43,33 @@ const store = createStore(
 // store.dispatch(connectUser("superuser"))
 
 
-const getEtherAdress = () => {
-  return new Promise((resolve, reject) => {
-    web3.eth.getCoinbase((error, result) => {
-      resolve(result)
-    })
-  })
-};
-var JWT_SECRET = "mdp"
-const auth = () => {
-  getEtherAdress().then(adress => {
-    let user = jwt.user()
-    let key = "demo"
-    let tokeninfo = {
-      user_id: user.id,
-      user_name: user.user_name,
-      ethadress: adress,
-      exp: Date() + 60
-    }
-    return jwt.sign(tokeninfo, process.env.JWT_SECRET, {
-      expiresIn: 60 * 60 * 24 // expires in 24 hours
-   });
-  }) 
+// const getEtherAdress = () => {
+//   return new Promise((resolve, reject) => {
+//     web3.eth.getCoinbase((error, result) => {
+//       resolve(result)
+//     })
+//   })
+// };
+// var JWT_SECRET = "mdp"
+// const auth = () => {
+//   getEtherAdress().then(adress => {
+//     let user = jwt.user()
+//     let key = "demo"
+//     let tokeninfo = {
+//       user_id: user.id,
+//       user_name: user.user_name,
+//       ethadress: adress,
+//       exp: Date() + 60
+//     }
+//     return jwt.sign(tokeninfo, process.env.JWT_SECRET, {
+//       expiresIn: 60 * 60 * 24 // expires in 24 hours
+//    });
+//   }) 
   
-  console.log(user)
-}
-getEtherAdress().then(reuslt => console.log(reuslt))
-auth()
+//   console.log(user)
+// }
+// getEtherAdress().then(reuslt => console.log(reuslt))
+// auth()
 
 const Home = () =>  <div><App /></div>
 const Admin = () =>  <div><VisibleAdmin /></div>
